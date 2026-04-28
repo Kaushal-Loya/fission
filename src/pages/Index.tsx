@@ -1,23 +1,23 @@
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
-import { LogoStrip } from "@/components/landing/LogoStrip";
-import { Features } from "@/components/landing/Features";
+import { SystemPipeline } from "@/components/landing/SystemPipeline";
 import { HowItWorks } from "@/components/landing/HowItWorks";
+import { FeatureCards } from "@/components/landing/FeatureCards";
+import { ProofSection } from "@/components/landing/ProofSection";
 import { Pricing } from "@/components/landing/Pricing";
-import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground" style={{ overflowX: "clip" }}>
       <Navbar />
       <main>
         <Hero />
-        <LogoStrip />
-        <Features />
+        <SystemPipeline />
         <HowItWorks />
+        <FeatureCards />
+        <ProofSection />
         <Pricing />
-        <FinalCTA />
       </main>
       <Footer />
     </div>

@@ -14,12 +14,12 @@ const tiers = [
     name: "Pro",
     price: "29",
     cadence: "/ month",
-    desc: "For individuals shipping serious code.",
+    desc: "Ideal for individual developers shipping production code.",
     features: [
       "Unlimited scans",
       "Private repos",
       "Dependency mapping",
-      "Safe deletion AI",
+      "Safe removal AI",
       "CI/CD integration",
       "Priority support",
     ],
@@ -30,14 +30,14 @@ const tiers = [
     name: "Team",
     price: "89",
     cadence: "/ user / mo",
-    desc: "For engineering teams at scale.",
+    desc: "For engineering teams requiring collaboration & integrations.",
     features: [
       "Everything in Pro",
-      "Team reports & digests",
-      "Ownership mapping",
+      "Team reports & heatmaps",
+      "Custom integrations",
       "SAML SSO",
       "Self-hosted runner",
-      "Dedicated engineer",
+      "Dedicated support",
     ],
     cta: "Talk to sales",
     featured: false,
@@ -50,7 +50,6 @@ export const Pricing = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <div className="font-mono text-xs text-primary mb-4">// 04 — pricing</div>
           <h2 className="font-display text-4xl lg:text-5xl font-bold tracking-tight mb-6">
             Pay for the bloat you remove.
           </h2>
@@ -59,38 +58,46 @@ export const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
-          {tiers.map((t) => (
+        <div className="grid md:grid-cols-3 gap-8 items-start">
+          {tiers.map((t, i) => (
             <div
               key={t.name}
-              className={`relative rounded-2xl border p-8 flex flex-col transition-all hover:-translate-y-1 ${
+              className={`relative rounded-sm border p-8 flex flex-col transition-all duration-500 ${
                 t.featured
-                  ? "border-primary/60 bg-gradient-to-b from-primary/[0.08] to-card shadow-[0_0_60px_-20px_hsl(var(--primary)/0.5)]"
-                  : "border-border bg-card/60 hover:border-border"
+                  ? "border-primary bg-primary/5 shadow-[8px_8px_0px_0px_rgba(var(--primary-glow),0.2)] md:-translate-y-4 scale-105 z-10"
+                  : "border-border bg-card/30 md:translate-y-4 opacity-80 hover:opacity-100"
               }`}
             >
               {t.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-widest uppercase px-3 py-1 rounded-full bg-primary text-primary-foreground font-semibold">
-                  Most Popular
+                <div className="absolute -top-3 right-4 font-mono text-[9px] tracking-widest uppercase px-2 py-0.5 rounded-sm bg-primary text-primary-foreground font-bold">
+                  RECOMMENDED
                 </div>
               )}
 
               <div className="mb-6">
-                <div className="font-mono text-xs text-muted-foreground mb-2">// {t.name.toLowerCase()}</div>
-                <h3 className="font-display text-2xl font-bold mb-2">{t.name}</h3>
-                <p className="text-sm text-muted-foreground">{t.desc}</p>
+                <div className="font-mono text-[10px] text-muted-foreground mb-4 flex items-center gap-2">
+                   <span className={`w-1.5 h-1.5 rounded-full ${t.featured ? 'bg-primary' : 'bg-muted-foreground'}`} />
+                   TIER_{i+1}
+                </div>
+                <h3 className="font-display text-2xl font-bold mb-1 tracking-tight">{t.name}</h3>
+                <p className="text-xs text-muted-foreground font-mono">{t.desc}</p>
               </div>
 
-              <div className="mb-8 flex items-baseline gap-1">
-                <span className="font-mono text-sm text-muted-foreground">$</span>
-                <span className="font-display text-5xl font-bold tracking-tight">{t.price}</span>
-                <span className="text-sm text-muted-foreground ml-1">{t.cadence}</span>
+              <div className="mb-8">
+                <div className="flex items-baseline gap-1">
+                   <span className="font-mono text-sm text-muted-foreground">$</span>
+                   <span className="font-display text-5xl font-black tracking-tight">{t.price}</span>
+                   <span className="text-xs text-muted-foreground font-mono ml-1">{t.cadence}</span>
+                </div>
+                <div className="mt-2 font-mono text-[10px] text-primary/80">
+                   {t.name === "Free" ? "Up to 5k LOC scanned" : t.name === "Pro" ? "Up to 100k LOC scanned" : "Unlimited LOC scanned"}
+                </div>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-4 mb-10 flex-1">
                 {t.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm">
-                    <Check className={`w-4 h-4 mt-0.5 shrink-0 ${t.featured ? "text-primary" : "text-muted-foreground"}`} strokeWidth={2.5} />
+                  <li key={f} className="flex items-start gap-3 text-xs font-mono">
+                    <span className={t.featured ? "text-primary" : "text-muted-foreground"}>{'>'}</span>
                     <span className="text-foreground/90">{f}</span>
                   </li>
                 ))}
@@ -98,13 +105,13 @@ export const Pricing = () => {
 
               <a
                 href="#"
-                className={`text-center text-sm font-semibold py-3 rounded-lg transition-all ${
+                className={`text-center font-mono text-xs font-bold py-3 px-4 rounded-sm transition-all ${
                   t.featured
-                    ? "bg-primary text-primary-foreground hover:shadow-[0_0_24px_hsl(var(--primary)/0.6)]"
-                    : "border border-border bg-secondary/40 hover:bg-secondary text-foreground"
+                    ? "bg-primary text-primary-foreground hover:shadow-[4px_4px_0px_0px_rgba(var(--primary-glow),0.4)]"
+                    : "border border-border bg-secondary/30 hover:bg-secondary text-foreground"
                 }`}
               >
-                {t.cta}
+                {t.cta.toUpperCase()}
               </a>
             </div>
           ))}

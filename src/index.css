@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 40% 7%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 40% 7%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 142 90% 55%;
+    --primary-foreground: 222 47% 5%;
+    --primary-glow: 142 100% 65%;
+
+    --secondary: 220 30% 12%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 220 25% 10%;
+    --muted-foreground: 215 18% 58%;
+
+    --accent: 190 95% 55%;
+    --accent-foreground: 222 47% 5%;
+
+    --tertiary: 265 70% 65%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 25% 14%;
+    --input: 220 25% 14%;
+    --ring: 142 90% 55%;
+
+    --radius: 0.625rem;
+
+    --gradient-hero: radial-gradient(ellipse at top, hsl(142 90% 55% / 0.15), transparent 60%);
+    --gradient-accent: linear-gradient(135deg, hsl(142 90% 55%), hsl(190 95% 55%));
+    --gradient-card: linear-gradient(180deg, hsl(220 30% 9%), hsl(222 40% 6%));
+
+    --shadow-glow: 0 0 60px hsl(142 90% 55% / 0.25);
+    --shadow-soft: 0 20px 60px -20px hsl(142 90% 55% / 0.3);
+    --shadow-card: 0 1px 0 hsl(220 25% 18%) inset, 0 20px 40px -20px hsl(0 0% 0% / 0.5);
+
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-display: 'Inter Tight', Inter, system-ui, sans-serif;
+
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary-glow));
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: -1px -1px;
+  }
+
+  .dot-bg {
+    background-image: radial-gradient(hsl(var(--border)) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(180deg, black 60%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, black 60%, transparent);
+  }
+
+  .mask-fade-radial {
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+  .animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+
+  @keyframes flow {
+    0% { stroke-dashoffset: 100; }
+    100% { stroke-dashoffset: 0; }
+  }
+  .animate-flow { animation: flow 3s linear infinite; }
+
+  @keyframes float-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-float-up { animation: float-up 0.8s var(--transition-smooth) both; }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}

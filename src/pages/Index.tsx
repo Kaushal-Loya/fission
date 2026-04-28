@@ -7,17 +7,32 @@ import { ProofSection } from "@/components/landing/ProofSection";
 import { Pricing } from "@/components/landing/Pricing";
 import { Footer } from "@/components/landing/Footer";
 
+import ScrollReveal from "@/components/landing/ScrollReveal";
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ overflowX: "clip" }}>
       <Navbar />
       <main>
         <Hero />
-        <SystemPipeline />
+        
+        <ScrollReveal>
+          <SystemPipeline />
+        </ScrollReveal>
+
         <HowItWorks />
-        <FeatureCards />
-        <ProofSection />
-        <Pricing />
+
+        <ScrollReveal>
+          <FeatureCards />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <ProofSection />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <Pricing />
+        </ScrollReveal>
       </main>
       <Footer />
     </div>

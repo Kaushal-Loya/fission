@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Fission Project
 
 TODO: Document your project here

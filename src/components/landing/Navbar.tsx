@@ -16,8 +16,8 @@ export const Navbar = () => {
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           {[
             { label: "Product", href: "#" },
-            { label: "Features", href: "#features" },
             { label: "How it works", href: "#workflow" },
+            { label: "Features", href: "#features" },
             { label: "Pricing", href: "#pricing" },
           ].map((item) => (
             <a key={item.label} href={item.href} className="hover:text-foreground transition-colors relative group">
